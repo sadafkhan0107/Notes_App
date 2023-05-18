@@ -8,10 +8,10 @@ let showOtherNotes = document.querySelector('.notes-container');
 let showPinnedNotes = document.querySelector('.pinned-notes-container');
 let arrayOfNotes = JSON.parse(localStorage.getItem("notes")) || [];
 
-addNoteButton.addEventListener(click, () =>{
+addNoteButton.addEventListener("click", () =>{
     if(note.value.trim().length > 0 || title.value.trim().length > 0){
-        arrayOfNotes = [...arrayOfNotes, {id: Date.now(), title:title.value.trim(), 
-            note:note.value.trim(), isPinned: false, isArchived: false}];
+        arrayOfNotes = [...arrayOfNotes, {id: Date.now(), title: title.value.trim(), 
+            note: note.value.trim(), isPinned: false, isArchived: false}];
         note.value = title.value = "";
         showOtherNotes.innerHTML = renderNotes(arrayOfNotes);
         localStorage.setItem("notes", JSON.stringify(arrayOfNotes));

@@ -1,7 +1,7 @@
 export const renderNotes = (notes) => {
     let newNote = notes.map(({id, note, title, isPinned, isArchived}) => {
        return( 
-       <div class= 'single-note shadow'>
+        `<div class= 'single-note shadow'>
             <div class= 'd-flex align-centre title-container'>
                 <span class='single-note-title'>${title}</span>
                 <button class='button del-btn v-hidden'>
@@ -18,6 +18,8 @@ export const renderNotes = (notes) => {
                     <span class = 'material-icons-outlined'> archive </span>
                 </button>
             </div>
-        </div>)
-    } );
+        </div>`)
+    });
+    newNote = newNote.join("");
+    return newNote;
 }
