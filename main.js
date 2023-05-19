@@ -16,15 +16,16 @@ switch(type){
     case "del":
         arrayOfNotes =  arrayOfNotes.filter(({id}) => id.toString() != noteId)
         showOtherNotes.innerHTML = renderNotes(arrayOfNotes.filter(({isPinned}) => !isPinned));
-        localStorage.setItem("notes", JSON.stringyfy(arrayOfNotes));
+        localStorage.setItem("notes", JSON.stringify(arrayOfNotes));
         break;
 
     case "pinned":
-        arrayOfNotes = arrayOfNotes.map(note => note.id.toString() === noteId ? 
-        {...note,isPinned: !isPinned}: note);
+        arrayOfNotes = arrayOfNotes.map(note => note.id.toString() === noteId ? {...note,isPinned: !note.isPinned}: note);
+        console.log(arrayOfNotes);
         showOtherNotes.innerHTML = renderNotes(arrayOfNotes.filter(({isPinned}) => !isPinned));
+        console.log(arrayOfNotes);
         showOtherNotes.innerHTML = renderNotes(arrayOfNotes.filter(({isPinned}) => isPinned));
-        localStorage.setItem("notes", JSON.stringyfy(arrayOfNotes));
+        localStorage.setItem("note", JSON.stringify(arrayOfNotes));
         break;
 }
 })
