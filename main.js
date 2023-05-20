@@ -16,6 +16,7 @@ switch(type){
     case "del":
         arrayOfNotes =  arrayOfNotes.filter(({id}) => id.toString() != noteId)
         showOtherNotes.innerHTML = renderNotes(arrayOfNotes.filter(({isPinned}) => !isPinned));
+        showOtherNotes.innerHTML = renderNotes(arrayOfNotes.filter(({isPinned}) => isPinned));
         localStorage.setItem("notes", JSON.stringify(arrayOfNotes));
         break;
 
