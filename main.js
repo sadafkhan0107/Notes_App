@@ -14,20 +14,28 @@ let noteId = event.target.dataset.id;
 
 switch(type){
     case "del":
-        arrayOfNotes =  arrayOfNotes.filter(({id}) => id.toString() != noteId)
-        showOtherNotes.innerHTML = renderNotes(arrayOfNotes.filter(({isPinned}) => !isPinned));
+        arrayOfNotes =  arrayOfNotes.filter(({id}) => id.toString() !== noteId)
+        showOtherNotes.innerHTML = renderNotes(arrayOfNotes.filter(({isPinned,isArchived}) =>
+         !isPinned && !isArchived));
         showOtherNotes.innerHTML = renderNotes(arrayOfNotes.filter(({isPinned}) => isPinned));
         localStorage.setItem("notes", JSON.stringify(arrayOfNotes));
         break;
 
     case "pinned":
-        arrayOfNotes = arrayOfNotes.map(note => note.id.toString() === noteId ? {...note,isPinned: !note.isPinned}: note);
-        console.log(arrayOfNotes);
-        showOtherNotes.innerHTML = renderNotes(arrayOfNotes.filter(({isPinned}) => !isPinned));
-        console.log(arrayOfNotes);
+        arrayOfNotes = arrayOfNotes.map(note => note.id.toString() === noteId ? 
+        {...note,isPinned: !note.isPinned} : note);
+        showOtherNotes.innerHTML = renderNotes(arrayOfNotes.filter(({isPinned, isArchived}) =>
+         !isPinned && !isArchived));
         showOtherNotes.innerHTML = renderNotes(arrayOfNotes.filter(({isPinned}) => isPinned));
-        localStorage.setItem("note", JSON.stringify(arrayOfNotes));
+        localStorage.setItem("notes", JSON.stringify(arrayOfNotes));
         break;
+    
+    case "archive":
+        arrayOfNotes = arrayOfNotes.map(note => note.id.toString() === noteId ? 
+        {...note, isArchived : !note.isArchived} : note);
+        showOtherNotes.innerHTML = renderNotes(arrayOfNotes.filter(({isPinned ,isArchived}) => 
+        !isPinned && !isArchived));
+        localStorage.setItem("note", JSON.stringify(arrayOfNotes));
 }
 })
 
@@ -36,9 +44,12 @@ addNoteButton.addEventListener("click", () =>{
         arrayOfNotes = [...arrayOfNotes, {id: Date.now(), title: title.value.trim(), 
             note: note.value.trim(), isPinned: false, isArchived: false}];
         note.value = title.value = "";
-        showOtherNotes.innerHTML = renderNotes(arrayOfNotes);
+        showOtherNotes.innerHTML = renderNotes(arrayOfNotes.filter(({isPinned, isArchived}) =>
+        !isPinned && !isArchived));
         localStorage.setItem("notes", JSON.stringify(arrayOfNotes));
     }
 })
 
-showOtherNotes.innerHTML = renderNotes(arrayOfNotes);
+showOtherNotes.innerHTML = renderNotes(arrayOfNotes.filter((
+    {isPinned, isArchived}) => !isPinned && !isArchived));
+showPinnedNotes.innerHTML = renderNotes(arrayOfNotes.filter(({isPinned}) => isPinned));

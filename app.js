@@ -11,7 +11,10 @@ export const renderNotes = (notes) => {
             <p>${note}</p>
             <div class='options d-flex gap-md'>
                 <button data-type="pinned" data-id= ${id} class='button btn pinned-btn v-hidden'>
-                    <span data-type="pinned" data-id= ${id} class = 'material-icons-outlined'>push_pin</span>
+                    <span data-type="pinned" data-id= ${id} class = ${isPinned? "material-icons": 
+                    "material-icons-outlined"}> 
+                      push_pin 
+                    </span>
                 </button>
 
                 <button data-type="archive" data-id= ${id} class='button btn pinned-btn v-hidden'>
