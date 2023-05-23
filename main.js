@@ -26,7 +26,7 @@ switch(type){
         {...note,isPinned: !note.isPinned} : note);
         showOtherNotes.innerHTML = renderNotes(arrayOfNotes.filter(({isPinned, isArchived}) =>
          !isPinned && !isArchived));
-        showOtherNotes.innerHTML = renderNotes(arrayOfNotes.filter(({isPinned}) => isPinned));
+        showPinnedNotes.innerHTML = renderNotes(arrayOfNotes.filter(({isPinned}) => isPinned));
         localStorage.setItem("notes", JSON.stringify(arrayOfNotes));
         break;
     
@@ -35,7 +35,7 @@ switch(type){
         {...note, isArchived : !note.isArchived} : note);
         showOtherNotes.innerHTML = renderNotes(arrayOfNotes.filter(({isPinned ,isArchived}) => 
         !isPinned && !isArchived));
-        localStorage.setItem("note", JSON.stringify(arrayOfNotes));
+        localStorage.setItem("notes", JSON.stringify(arrayOfNotes));
 }
 })
 
