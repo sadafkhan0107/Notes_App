@@ -1,6 +1,6 @@
 # Notes_App
 
-Note_App is a super cool to add your todos, and have stored for a life time. You can also pin & Unpin the notes and push the notes in archive section which is another web page.
+Note_App is a super cool to add your notes, and have stored for a life time. You can also pin & Unpin the notes and push the notes in archive section which is another web page.
 
 Tech Stack
 HTML/CSS
